@@ -29,7 +29,7 @@ void Print_Square_Matrix(int matrix[SIZE_ROW][SIZE_COLUMN], int length_matrix, i
 	{
 		for(short int j = 0; j < width_matrix; j++)
 		{
-			printf("%2d ",matrix[i][j]);
+			printf("%2d ", matrix[i][j]);
 		}
 		printf("\n");
 	}
@@ -81,6 +81,41 @@ void Fill_Unit_Up_Triangle(int matrix[SIZE_ROW][SIZE_COLUMN], int length_matrix,
 	}
 }
 
+void Fill_Increment_Square_Matrix_By_Spiral(int matrix[SIZE_ROW][SIZE_COLUMN], int length_matrix, int width_matrix)
+{
+	int size_matrix = (length_matrix * width_matrix);
+	int start_row = 0;
+	int start_column = 0;
+	int value_element = 0;
+	do
+	{
+		for(short int j = start_column; j < width_matrix; j++)
+		{
+			value_element++;
+			matrix[start_row][j] = value_element;
+		}
+		width_matrix--;
+		length_matrix--;
+		start_row++;
+		for(short int i = start_row; i < length_matrix; i++)
+		{
+			value_element++;
+			matrix[i][width_matrix] = value_element;
+		}
+		for(short int j = width_matrix; j > start_column; j--)
+		{
+			value_element++;
+			matrix[length_matrix][j] = value_element;
+		}
+		for(short int i = length_matrix; i > (start_row - 1); i--)
+		{
+			value_element++;
+			matrix[i][start_column] = value_element;
+		}
+		start_column++;
+	} while(value_element < size_matrix);
+}
+
 int main()
 {
 	int square_matrix[SIZE_ROW][SIZE_COLUMN];
@@ -98,6 +133,8 @@ int main()
 	Fill_Unit_Up_Triangle(square_matrix, SIZE_ROW, SIZE_COLUMN);
 	Print_Square_Matrix(square_matrix, SIZE_ROW, SIZE_COLUMN);
 	//task 4
-	
+	Fill_Zero_Square_Matrix(square_matrix, SIZE_ROW, SIZE_COLUMN);
+	Fill_Increment_Square_Matrix_By_Spiral(square_matrix, SIZE_ROW, SIZE_COLUMN);
+	Print_Square_Matrix(square_matrix, SIZE_ROW, SIZE_COLUMN);
 	return 0;
 }
