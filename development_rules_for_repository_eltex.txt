@@ -1,0 +1,19 @@
+Rules working with branches for the eltex repository:
+
+Rules for naming branches:
+Each laboratory work is designed as a separate issues and its own branch is allocated for it.
+The naming of the development branch should look like issues#/*number issues*/. The naming of the branch for improvements and/or bugfixes should be hotfix#/*number_issues where the code was developed*/.
+The merge is performed without rewinding.
+
+Rules for creating issues:
+Issues should be named as issues#/*number issues*/. Issues should have one of the following notes: develop for issues related to writing source code, hotfix for issues related to revision and / or bug fixing. If you need to add a hotfix label, you need to reopen issues to replace the develop label with the hotfix label.
+
+Rules for the design of the source code in the eltex repository:
+The opening program bracket is located on a new line with the same indentation as the expression located on the previous line.
+Expressions inside program brackets are placed on a new line indented by:
+1 tab character(the tab character is always used as an indent, not spaces)
+The closing program bracket is located with an indent equal to the indent of the corresponding opening program bracket (that is, exactly below it).
+Macro names should be written entirely in capital letters. Variable names must be completely written in lowercase letters. Function names should be written with the first uppercase letter and the remaining lowercase letters. All words in all names must be separated by underscores.
+
+Assistance in meeting these requirements:
+Before preparing a commit, format the code using the clang-format contained in the eltex repository. For convenience, you can use the eltex repository script to format the code script/script_format_files.sh
