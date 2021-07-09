@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#include <stdio.h>
-
 #define QUANTITY_ABONENT 10
 #define MAX_LENGTH_NAME 5
 #define MAX_LENGTH_SURNAME 7
@@ -36,7 +34,7 @@ void Fill_Telephone_Directory(telephone_directory array_abonent[QUANTITY_ABONENT
 	{
 		for(short int j = 0; j < MAX_LENGTH_NAME - 1; j++)
 		{
-			array_abonent[i].name[j] = ('A' + i); 
+			array_abonent[i].name[j] = ('A' + i);
 		}
 		array_abonent[i].name[MAX_LENGTH_NAME - 1] = '\0';
 		for(short int j = 0; j < MAX_LENGTH_SURNAME - 1; j++)
@@ -129,6 +127,6 @@ int main()
 				break;
 			}
 		}
-	}while(key_choice != '0');
+	} while(key_choice != '0');
 	return 0;
 }
