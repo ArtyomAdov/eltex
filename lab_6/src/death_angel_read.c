@@ -28,7 +28,7 @@ int Get_Dynamic_User_Input_String(char* user_input_string[], int* size_user_inpu
 	tcflush(STDIN_FILENO, TCIFLUSH);
 	(*user_input_string)[i] = '\0';
 	*size_user_input_string = (i + 1);
-	*user_input_string = (char*)realloc(*user_input_string, *size_user_input_string * sizeof(char)); //возможно тут косяк
+	*user_input_string = (char*)realloc(*user_input_string, *size_user_input_string * sizeof(char));
 	return 0;
 }
 
@@ -36,5 +36,16 @@ int Get_Static_User_Input_String(char user_input_string[MAX_LENGTH_TELEPHONE_NUM
 {
 	read(STDIN_FILENO, &(*user_input_string), (MAX_LENGTH_TELEPHONE_NUMBER * sizeof(char)));
 	tcflush(STDIN_FILENO, TCIFLUSH);
+	for(short int i = 0; i < MAX_LENGTH_TELEPHONE_NUMBER; i++)
+	{
+		if((user_input_string[i] < FIRST_SYMBOL_DIGIT) || (user_input_string[i] > LAST_SYMBOL_DIGIT))
+		{
+			for(short int j = i; j < MAX_LENGTH_TELEPHONE_NUMBER; j++)
+			{
+				user_input_string[j] = '\0';
+			}
+			break;
+		}
+	}
 	return 0;
 }

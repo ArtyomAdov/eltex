@@ -24,25 +24,21 @@ int main()
 				CHECK_ERROR_FLAG(Add_Note_In_Telephone_Directory(&list_abonent));
 				break;
 			}
-#if 0
-			case(KEY_CHOICE_FIND_NOTE_IN_TELEPHONE_DIRECTORY):
+			case(KEY_CHOICE_FIND_NOTE_IN_TELEPHONE_DIRECTORY_BY_TELEPHONE_NUMBER):
 			{
-				Find_Note_In_Telephone_Directory(array_abonent);
+				Find_Note_In_Telephone_Directory_By_Telephone_Number(list_abonent);
 				break;
 			}
-#endif
 			case(KEY_CHOICE_PRINT_TELEPHONE_DIRECTORY):
 			{
 				Print_Telephone_Directory(list_abonent);
 				break;
 			}
-#if 0
-			case(KEY_CHOICE_DELETE_NOTE_FROM_TELEPHONE_DIRECTORY):
+			case(KEY_CHOICE_DELETE_NOTE_FROM_TELEPHONE_DIRECTORY_BY_NUMBER_NOTE):
 			{
-				CHECK_ERROR_FLAG(Delete_Note_From_Telephone_Directory(&list_abonent));
+				CHECK_ERROR_FLAG(Delete_Note_From_Telephone_Directory_By_Number_Note(&list_abonent));
 				break;
 			}
-#endif
 			case(KEY_CHOICE_CLEAR_SCREEN):
 			{
 				printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
