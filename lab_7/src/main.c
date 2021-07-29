@@ -1,7 +1,7 @@
 #include "death_angel_additional.h"
 #include "death_angel_difference.h"
-#include "death_angel_multiple.h"
 #include "death_angel_division.h"
+#include "death_angel_multiple.h"
 
 #include <stdio.h>
 #include <termios.h>
