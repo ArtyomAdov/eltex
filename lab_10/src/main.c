@@ -38,8 +38,6 @@ int main(const int argc, const char* const argv[])
 	cbreak();
 	ioctl(fileno(stdout), TIOCGWINSZ, (char*)&window_size);
 	window = newwin(window_size.ws_row, window_size.ws_col, 0, 0);
-	// window_size.ws_col--;
-	// window_size.ws_row--;
 	keypad(window, true);
 	noecho();
 	immedok(window, true);
@@ -47,16 +45,6 @@ int main(const int argc, const char* const argv[])
 	do
 	{
 		symbol = getc(file);
-		if('\n' == symbol)
-		{
-			getyx(window, window_coordinate_y, window_coordinate_x);
-			while(window_size.ws_col < window_coordinate_x)
-			{
-				window_coordinate_x++;
-				waddch(window, ' ');
-			}
-			window_coordinate_x = 0;
-		}
 		if(EOF == symbol)
 		{
 			break;
@@ -74,12 +62,22 @@ int main(const int argc, const char* const argv[])
 				window_coordinate_x--;
 				if(window_coordinate_x < 0)
 				{
+					if(1 > window_coordinate_y)
+					{
+						window_coordinate_x++;
+						break;
+					}
 					window_coordinate_x = window_size.ws_col - 1;
 					window_coordinate_y--;
 					wmove(window, window_coordinate_y, window_coordinate_x);
 					while(' ' == (winch(window) & A_CHARTEXT))
 					{
 						window_coordinate_x--;
+						if(0 > window_coordinate_x)
+						{
+							window_coordinate_x++;
+							break;
+						}
 						wmove(window, window_coordinate_y, window_coordinate_x);
 					}
 				}
@@ -105,12 +103,22 @@ int main(const int argc, const char* const argv[])
 				window_coordinate_x--;
 				if(0 > window_coordinate_x)
 				{
+					if(1 > window_coordinate_y)
+					{
+						window_coordinate_x++;
+						break;
+					}
 					window_coordinate_x = window_size.ws_col - 1;
 					window_coordinate_y--;
 					wmove(window, window_coordinate_y, window_coordinate_x);
 					while(' ' == (winch(window) & A_CHARTEXT))
 					{
 						window_coordinate_x--;
+						if(0 > window_coordinate_x)
+						{
+							window_coordinate_x++;
+							break;
+						}
 						wmove(window, window_coordinate_y, window_coordinate_x);
 					}
 				}
@@ -119,6 +127,14 @@ int main(const int argc, const char* const argv[])
 					wmove(window, window_coordinate_y, window_coordinate_x);
 				}
 				wdelch(window);
+				break;
+			}
+			case(KEY_ENTER):
+			{
+				window_coordinate_x = 0;
+				window_coordinate_y++;
+				wmove(window, window_coordinate_y, window_coordinate_x);
+				// wgetch(window);
 				break;
 			}
 			default:
